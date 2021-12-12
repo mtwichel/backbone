@@ -1,0 +1,3 @@
+Future<{{#pascalCase}}{{responseType}}{{/pascalCase}}> {{#camelCase}}{{name}}{{/camelCase}}({{> functionArgs.dart }}) {
+  // TODO implement {{#camelCase}}{{name}}{{/camelCase}}
+}

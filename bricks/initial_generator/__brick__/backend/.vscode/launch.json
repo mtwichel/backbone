@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "name": "Start API",
+      "type": "dart",
+      "request": "launch",
+      "program": "bin/server.dart",
+    }
+  ]
+}

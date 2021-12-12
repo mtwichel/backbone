@@ -1,0 +1,7 @@
+name: initial_generator
+description: An initial skeleton of a dart backend.
+vars:
+  - apiName
+  - endpoints
+  - responses
+  - requests

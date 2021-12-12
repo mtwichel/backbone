@@ -1,0 +1,1 @@
+library {{#snakeCase}}{{apiName}{{/snakeCase}};

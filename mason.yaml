@@ -1,0 +1,5 @@
+bricks:
+  initial_generator:
+    path: bricks/initial_generator
+  ongoing_generator:
+    path: bricks/ongoing_generator

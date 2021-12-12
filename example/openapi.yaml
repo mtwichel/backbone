@@ -1,0 +1,155 @@
+openapi: 3.0.3
+info:
+  title: Pets Api
+  version: 1.0.0
+  description: API for managing pets in each family
+paths:
+  /v1/pets/{petId}/images:
+    parameters:
+      - name: petId
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      operationId: uploadImage
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Image file to upload
+
+      responses:
+        "200":
+          description: Successfully uploaded image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier of the image
+
+  "/v1/pets":
+    get:
+      operationId: listPets
+      responses:
+        "200":
+          $ref: "#/components/responses/ListPetsResponse"
+
+    post:
+      operationId: createPet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pet"
+      responses:
+        "200":
+          $ref: "#/components/responses/CreatePetResponse"
+
+  "/v1/pets/{petId}":
+    parameters:
+      - name: petId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getPet
+      parameters:
+        - name: test
+          in: header
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: A successful pet response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pet:
+                    $ref: "#/components/schemas/Pet"
+                required:
+                  - pet
+    put:
+      operationId: updatePet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pet"
+      responses:
+        "200":
+          description: A successful update pet response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pet:
+                    $ref: "#/components/schemas/Pet"
+                required:
+                  - pet
+
+components:
+  responses:
+    ListPetsResponse:
+      description: A successful list pets response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pets:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Pet"
+            required:
+              - pets
+    CreatePetResponse:
+      description: A successful create pets response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Pet"
+  requestBodies:
+    CreatePetRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Pet"
+  schemas:
+    Pet:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        age:
+          type: integer
+        type:
+          $ref: "#/components/schemas/PetType"
+      required:
+        - id
+        - type
+
+    PetType:
+      type: string
+      enum:
+        - Cat
+        - Dog
+        - Fish
