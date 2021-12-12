@@ -30,7 +30,7 @@ dart pub global activate backbone
 
 1. Create a new file called `openapi.yaml`.
 
-2. Define your API using the [Open API Specification](https://swagger.io/specification/#specification), or copy the example spec.
+2. Define your API using the [Open API Specification](https://swagger.io/specification/#specification), or copy the [example spec](https://github.com/mtwichel/backbone/blob/main/example/openapi.yaml).
 
 3. In the folder your spec resides, run the following command:
 
