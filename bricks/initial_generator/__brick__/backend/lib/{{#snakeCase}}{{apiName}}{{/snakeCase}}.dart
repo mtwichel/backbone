@@ -1,1 +1,1 @@
-library {{#snakeCase}}{{apiName}{{/snakeCase}};
+library {{#snakeCase}}{{apiName}}{{/snakeCase}};
