@@ -9,7 +9,6 @@ environment:
 dependencies:
   shelf: ^1.2.0
   shelf_router: ^1.1.2
-  backbone:
-    path: ../../../backbone
+  backbone: ^0.0.1-dev.1
   {{#snakeCase}}{{apiName}}{{/snakeCase}}_function_objects:
     path: ../functions_objects

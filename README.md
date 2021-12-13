@@ -116,3 +116,4 @@ WIP
 - [ ] Include a mock request context and mock logger
 - [ ] Support for dependency injection using the request context
 - [ ] Support for middleware
+- [ ] Nice logging while generator is running
