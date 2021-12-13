@@ -1,4 +1,4 @@
-## 0.0.2-dev.2
+## 0.0.1-dev.2
 
 Updated pubspec to make backbone executable
 
