@@ -1,11 +1,14 @@
 name: backbone
+description: A Dart framework for writing REST APIs from an Open API spec.
 version: 0.0.1-dev.1
+repository: https://github.com/mtwichel/backbone
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   args: ^2.3.0
+  collection: ^1.15.0
   equatable: ^2.0.3
   http_parser: ^4.0.0
   json_annotation: ^4.4.0
