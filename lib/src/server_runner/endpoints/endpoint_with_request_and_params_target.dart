@@ -31,13 +31,14 @@ class EndpointWithRequestAndParamsTarget<RequestType, ResponseType, ParamsType>
     final params = await toParamsType(request, _fromParams);
 
     final logger = loggerForRequest(request);
-    final requestContext = _requiresAuthentication
-        ? RequestContextWithUserId(
-            logger,
-            request,
-            await verifyAuthorization(request, _tokenVerifier),
-          )
-        : RequestContext(logger, request);
+    final requestContext = RequestContext(
+      logger: logger,
+      rawRequest: request,
+      userId: _requiresAuthentication
+          ? await verifyAuthorization(request, _tokenVerifier)
+          : null,
+      authenticated: _requiresAuthentication,
+    );
 
     final response = await _function(argument, params, requestContext);
     final responseJson = jsonEncode(response);

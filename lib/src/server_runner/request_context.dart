@@ -2,16 +2,25 @@ import 'package:backbone/backbone.dart';
 import 'package:shelf/shelf.dart';
 
 class RequestContext {
-  const RequestContext(this.logger, this.rawRequest);
+  const RequestContext({
+    required this.logger,
+    required this.rawRequest,
+    required this.authenticated,
+    String? userId,
+  }) : _userId = userId;
+
   final RequestLogger logger;
   final Request rawRequest;
-}
+  final bool authenticated;
+  final String? _userId;
 
-class RequestContextWithUserId extends RequestContext {
-  const RequestContextWithUserId(
-    RequestLogger logger,
-    Request rawRequest,
-    this.userId,
-  ) : super(logger, rawRequest);
-  final String userId;
+  String get userId {
+    if (authenticated && _userId == null) {
+      throw const UnauthenticatedException(
+        'User is authenticated but no user id is set',
+      );
+    } else {
+      return _userId!;
+    }
+  }
 }
