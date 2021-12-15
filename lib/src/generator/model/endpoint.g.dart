@@ -14,6 +14,7 @@ Map<String, dynamic> _$EndpointToJson(Endpoint instance) => <String, dynamic>{
       'parameters': instance.parameters.map((e) => e.toJson()).toList(),
       'requestType': instance.requestType,
       'paramsType': instance.paramsType,
+      'requiresAuthentication': instance.requiresAuthentication,
       'hasParams': instance.hasParams,
       'hasRequest': instance.hasRequest,
       'queryParameters':

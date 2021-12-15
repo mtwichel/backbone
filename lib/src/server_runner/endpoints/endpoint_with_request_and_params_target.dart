@@ -7,24 +7,37 @@ import 'package:shelf/shelf.dart';
 class EndpointWithRequestAndParamsTarget<RequestType, ResponseType, ParamsType>
     implements Endpoint {
   const EndpointWithRequestAndParamsTarget(
-    this._function,
-    this._fromJson,
-    this._fromParams,
-  );
+    this._function, {
+    required JsonConverter<RequestType> requestFromJson,
+    required JsonConverter<ParamsType> fromParams,
+    required bool requiresAuthentication,
+    required TokenVerifier tokenVerifier,
+  })  : _requestFromJson = requestFromJson,
+        _fromParams = fromParams,
+        _tokenVerifier = tokenVerifier,
+        _requiresAuthentication = requiresAuthentication;
 
   final EndpointWithRequestAndParamsFunction<RequestType, ResponseType,
       ParamsType> _function;
-  final RequestType Function(Map<String, dynamic> json) _fromJson;
-  final ParamsType Function(Map<String, dynamic> params) _fromParams;
+  final JsonConverter<RequestType> _requestFromJson;
+  final JsonConverter<ParamsType> _fromParams;
+  final TokenVerifier? _tokenVerifier;
+
+  final bool _requiresAuthentication;
 
   @override
   FutureOr<Response> handler(Request request) async {
-    final argument = await toRequestType(request, _fromJson);
+    final argument = await toRequestType(request, _requestFromJson);
     final params = await toParamsType(request, _fromParams);
+
+    final userId = _requiresAuthentication
+        ? await verifyAuthorization(request, _tokenVerifier)
+        : null;
+
     final response = await _function(
       argument,
       params,
-      RequestContext(loggerForRequest(request), request),
+      RequestContext(loggerForRequest(request), request, userId),
     );
     final responseJson = jsonEncode(response);
 

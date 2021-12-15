@@ -11,6 +11,7 @@ class Endpoint {
     required this.name,
     required this.responseType,
     required this.parameters,
+    required this.requiresAuthentication,
     this.requestType,
     this.paramsType,
   });
@@ -24,6 +25,7 @@ class Endpoint {
   final List<Parameter> parameters;
   final String? requestType;
   final String? paramsType;
+  final bool requiresAuthentication;
 
   bool get hasParams => parameters.isNotEmpty;
   bool get hasRequest => requestType != null;

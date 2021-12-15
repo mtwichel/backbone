@@ -53,6 +53,8 @@ paths:
       responses:
         "200":
           $ref: "#/components/responses/CreatePetResponse"
+      security:
+        - petsApiAuth: []
 
   "/v1/pets/{petId}":
     parameters:
@@ -153,3 +155,9 @@ components:
         - Cat
         - Dog
         - Fish
+
+  securitySchemes:
+    petsApiAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

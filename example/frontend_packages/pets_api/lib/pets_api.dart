@@ -9,10 +9,12 @@ class PetsApi {
   const PetsApi({
     required this.baseUrl,
     required this.client,
+    this.authToken,
   });
 
   final String baseUrl;
   final Dio client;
+  final String? authToken;
 
   Future<UploadImageResponse> uploadImage(UploadImageParameters params) async {
     final response = await client.request(
@@ -20,7 +22,9 @@ class PetsApi {
       queryParameters: {},
       options: Options(
         method: 'POST',
-        headers: {},
+        headers: {
+          if (authToken != null) 'Authorization': 'Bearer $authToken',
+        },
       ),
     );
 
@@ -35,7 +39,9 @@ class PetsApi {
       queryParameters: {},
       options: Options(
         method: 'GET',
-        headers: {},
+        headers: {
+          if (authToken != null) 'Authorization': 'Bearer $authToken',
+        },
       ),
     );
 
@@ -51,7 +57,9 @@ class PetsApi {
       queryParameters: {},
       options: Options(
         method: 'POST',
-        headers: {},
+        headers: {
+          if (authToken != null) 'Authorization': 'Bearer $authToken',
+        },
       ),
     );
 
@@ -68,6 +76,7 @@ class PetsApi {
         method: 'GET',
         headers: {
           'test': params.test,
+          if (authToken != null) 'Authorization': 'Bearer $authToken',
         },
       ),
     );
@@ -87,7 +96,9 @@ class PetsApi {
       queryParameters: {},
       options: Options(
         method: 'PUT',
-        headers: {},
+        headers: {
+          if (authToken != null) 'Authorization': 'Bearer $authToken',
+        },
       ),
     );
 

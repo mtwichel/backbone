@@ -18,7 +18,10 @@ void main() async {
     EndpointWithoutRequestAndParamsTarget<function_objects.UploadImageResponse,
         function_objects.UploadImageParameters>(
       api.uploadImage,
-      (params) => function_objects.UploadImageParameters.fromJson(params),
+      fromParams: (params) =>
+          function_objects.UploadImageParameters.fromJson(params),
+      tokenVerifier: api.tokenVerifier,
+      requiresAuthentication: false,
     ).handler,
   );
 
@@ -27,6 +30,8 @@ void main() async {
     '/v1/pets',
     EndpointWithoutRequestTarget<function_objects.ListPetsResponse>(
       api.listPets,
+      tokenVerifier: api.tokenVerifier,
+      requiresAuthentication: false,
     ).handler,
   );
 
@@ -36,7 +41,9 @@ void main() async {
     EndpointWithRequestTarget<function_objects.Pet,
         function_objects.CreatePetResponse>(
       api.createPet,
-      (json) => function_objects.Pet.fromJson(json),
+      requestFromJson: (json) => function_objects.Pet.fromJson(json),
+      tokenVerifier: api.tokenVerifier,
+      requiresAuthentication: true,
     ).handler,
   );
 
@@ -46,7 +53,10 @@ void main() async {
     EndpointWithoutRequestAndParamsTarget<function_objects.GetPetResponse,
         function_objects.GetPetParameters>(
       api.getPet,
-      (params) => function_objects.GetPetParameters.fromJson(params),
+      fromParams: (params) =>
+          function_objects.GetPetParameters.fromJson(params),
+      tokenVerifier: api.tokenVerifier,
+      requiresAuthentication: false,
     ).handler,
   );
 
@@ -58,13 +68,16 @@ void main() async {
         function_objects.UpdatePetResponse,
         function_objects.UpdatePetParameters>(
       api.updatePet,
-      (json) => function_objects.Pet.fromJson(json),
-      (params) => function_objects.UpdatePetParameters.fromJson(params),
+      requestFromJson: (json) => function_objects.Pet.fromJson(json),
+      fromParams: (params) =>
+          function_objects.UpdatePetParameters.fromJson(params),
+      tokenVerifier: api.tokenVerifier,
+      requiresAuthentication: false,
     ).handler,
   );
 
   final server = await shelf_io.serve(
-    Pipeline().addHandler(router),
+    Pipeline().addMiddleware(authenticationMiddleware()).addHandler(router),
     InternetAddress.anyIPv4,
     int.parse(port),
   );

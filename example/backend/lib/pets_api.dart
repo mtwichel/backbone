@@ -1,4 +1,4 @@
-library {{#snakeCase}}{{apiName}}{{/snakeCase}};
+library pets_api;
 
 Future<String?> verifyToken(String? token) async {
   // TODO: implement verifyToken

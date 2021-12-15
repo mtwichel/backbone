@@ -44,7 +44,10 @@ Handler _handleBadRequest(Handler innerHandler) => (request) async {
 
 Response _fromBadRequestException(BadRequestException e) => Response(
       e.statusCode,
-      body: 'Bad request. ${e.message}',
+      body: '{"message": "${e.message}"}',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       context: {
         'bad_request_exception': e,
       },
@@ -111,9 +114,6 @@ Middleware cloudLoggingMiddleware(String projectId) {
                       'Bad request. ${error.message}',
                       error.innerStack ?? stackTrace,
                       LogSeverity.warning,
-                      // Since the error should have been raised within the
-                      // framework, we want to see the stack within
-                      // functions_framework
                       predicate: (f) => f.package == 'shelf',
                     )
                   : createErrorLogEntry(

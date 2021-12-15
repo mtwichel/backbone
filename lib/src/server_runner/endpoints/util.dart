@@ -1,9 +1,13 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:backbone/backbone.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
+
+typedef TokenVerifier = FutureOr<String?> Function(String? token);
+typedef JsonConverter<T> = T Function(Map<String, dynamic> json);
 
 Future<RequestType> toRequestType<RequestType>(
   Request request,
@@ -79,4 +83,32 @@ Future<Object?> decodeJson(Request request) async {
       innerStack: stackTrace,
     );
   }
+}
+
+Future<String?> verifyAuthorization(
+  Request request,
+  TokenVerifier? tokenVerifier,
+) async {
+  final authHeader = request.headers['Authorization'];
+  if (authHeader == null) {
+    throw BadRequestException(401, 'No Authorization header present');
+  }
+  final authHeaderParts = authHeader.split(' ');
+  if (authHeaderParts.length != 2) {
+    throw BadRequestException(
+      401,
+      // ignore: lines_longer_than_80_chars
+      'Authorization must have exactly one space between `Bearer ` and the token',
+    );
+  }
+  if (authHeaderParts.first != 'Bearer') {
+    throw BadRequestException(
+      401,
+      'Authorization must start with `Bearer `',
+    );
+  }
+
+  final token = authHeaderParts.last;
+
+  return await tokenVerifier?.call(token);
 }

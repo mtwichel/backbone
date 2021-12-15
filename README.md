@@ -99,6 +99,8 @@ Future<GetPuppiesResponse> getPuppies(RequestContext context) async{
 }
 ```
 
+- `userId`: This is a nullable `String?` that contains the `userId` of the user making the request (if the endpoint requires authentication).
+
 ## Other Topics
 
 ### Testing your API
@@ -110,6 +112,43 @@ Since each endpoint is simply one function, you can easily unit test it using Da
 Since your API is just Dart code, you can debug it using the Dart debugging tools you're familiar with.
 
 In fact, if you open to your `backend` package in [Visual Studio Code](https://code.visualstudio.com), in the "Run and Debug" tab, you can start debugging your API by just clicking run.
+
+### Authentication
+
+Backbone supports authentication via JWTs automatically. To use it, you need to do two steps:
+
+1. In you `backend/lib/[API_NAME].dart` folder, implement the function:
+
+```dart
+Future<String?> verifyToken(String? token) async {
+  // TODO: implement verifyToken
+}
+```
+
+It doesn't matter how you implement this function, but it should return a `String?` that contains the userId if the token is valid. If the token is invalid, it should throw an `AuthenticationException`.
+
+2. In your `openapi.yaml` file, add the following to the `components` section:
+
+```yaml
+securitySchemes:
+  [AUTH_SCHEME_NAME]:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+```
+
+Then, in each operation, add the following:
+
+```yaml
+security:
+  - [AUTH_SCHEME_NAME]: []
+```
+
+3. When creating your frontend object, pass the `authToken` into the constructor.
+
+## Authorization
+
+You should authorize the users in the functions you write (backbone doesn't support it directly). If a user is not authorized, the function should throw an `AuthorizationException`.
 
 ### Deploying your API
 
@@ -123,3 +162,4 @@ WIP
 - [ ] Support for dependency injection using the request context
 - [ ] Support for middleware
 - [ ] Nice logging while generator is running
+- [x] Support for authentication

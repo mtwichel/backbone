@@ -21,6 +21,26 @@ class Api {
     final endpoints = <Endpoint>[];
     final objects = <SchemaObject>[];
     final parameterObjects = <ParameterObject>[];
+    final definedSecuritySchemes = <String>[];
+
+    final securitySchemes = api.components?.securitySchemes;
+    if (securitySchemes != null) {
+      for (final securitySchemeEntries in securitySchemes.entries) {
+        if (securitySchemeEntries.value!.type != APISecuritySchemeType.http) {
+          throw Exception(
+            // ignore: lines_longer_than_80_chars
+            'WARNING: Backbone currently only supports HTTP security schemes. Skipping ${securitySchemeEntries.key}',
+          );
+        }
+        if (securitySchemeEntries.value!.scheme != 'bearer') {
+          throw Exception(
+            // ignore: lines_longer_than_80_chars
+            'WARNING: Backbone currently only supports Bearer tokens. Skipping ${securitySchemeEntries.key}',
+          );
+        }
+        definedSecuritySchemes.add(securitySchemeEntries.key);
+      }
+    }
 
     for (final pathEntry in api.paths!.entries) {
       final pathParamers = pathEntry.value!.parameters;
@@ -104,6 +124,20 @@ class Api {
             );
           }
 
+          final securitySchemes = operation.security;
+
+          if (securitySchemes != null) {
+            for (final securityScheme in securitySchemes) {
+              for (final requirement in securityScheme!.requirements.entries) {
+                if (!definedSecuritySchemes.contains(requirement.key)) {
+                  throw Exception(
+                    'Unknown security scheme: ${requirement.key}',
+                  );
+                }
+              }
+            }
+          }
+
           endpoints.add(
             Endpoint(
               name: operationId,
@@ -113,6 +147,8 @@ class Api {
               paramsType: paramsType,
               responseType: responseName ?? '${operationId}Response',
               parameters: combinedParameters,
+              requiresAuthentication:
+                  securitySchemes != null && securitySchemes.isNotEmpty,
             ),
           );
         }

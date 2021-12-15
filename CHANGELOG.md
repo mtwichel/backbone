@@ -1,3 +1,7 @@
+## 0.0.1-dev.5
+
+- Added support for authentication via JWT
+
 ## 0.0.1-dev.4
 
 - Fixed bug generating param objects

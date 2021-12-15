@@ -10,10 +10,12 @@ class {{#pascalCase}}{{apiName}}{{/pascalCase}} {
   const {{#pascalCase}}{{apiName}}{{/pascalCase}}({
     required this.baseUrl,
     required this.client,
+    this.authToken,
   });
 
   final String baseUrl;
   final Dio client;
+  final String? authToken;
 
   {{#endpoints}}
   Future<{{#pascalCase}}{{responseType}}{{/pascalCase}}> {{name}}({{#hasParams}}{{#hasRequest}}{{#pascalCase}}{{requestType}}{{/pascalCase}} request, {{#pascalCase}}{{paramsType}}{{/pascalCase}} params,{{/hasRequest}}{{^hasRequest}}{{#pascalCase}}{{paramsType}}{{/pascalCase}} params{{/hasRequest}}{{/hasParams}}{{^hasParams}}{{#hasRequest}}{{#pascalCase}}{{requestType}}{{/pascalCase}} request{{/hasRequest}}{{/hasParams}}) async {
@@ -29,6 +31,7 @@ class {{#pascalCase}}{{apiName}}{{/pascalCase}} {
         headers: {
           {{#headerParameters}}'{{name}}': params.{{name}},
           {{/headerParameters}}
+          if (authToken != null) 'Authorization': 'Bearer $authToken',
         },
       ),
     );
