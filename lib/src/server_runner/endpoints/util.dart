@@ -6,7 +6,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
-typedef TokenVerifier = FutureOr<String?> Function(String? token);
+typedef TokenVerifier = FutureOr<String> Function(String token);
 typedef JsonConverter<T> = T Function(Map<String, dynamic> json);
 
 Future<RequestType> toRequestType<RequestType>(
@@ -85,9 +85,9 @@ Future<Object?> decodeJson(Request request) async {
   }
 }
 
-Future<String?> verifyAuthorization(
+Future<String> verifyAuthorization(
   Request request,
-  TokenVerifier? tokenVerifier,
+  TokenVerifier tokenVerifier,
 ) async {
   final authHeader = request.headers['Authorization'];
   if (authHeader == null) {
@@ -110,5 +110,5 @@ Future<String?> verifyAuthorization(
 
   final token = authHeaderParts.last;
 
-  return await tokenVerifier?.call(token);
+  return await tokenVerifier(token);
 }

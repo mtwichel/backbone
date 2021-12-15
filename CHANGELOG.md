@@ -1,3 +1,7 @@
+## 0.0.1-dev.6
+
+- Make authentication return `userId` as `String` instead of `String?`
+
 ## 0.0.1-dev.5
 
 - Added support for authentication via JWT

@@ -21,7 +21,7 @@ class EndpointWithRequestAndParamsTarget<RequestType, ResponseType, ParamsType>
       ParamsType> _function;
   final JsonConverter<RequestType> _requestFromJson;
   final JsonConverter<ParamsType> _fromParams;
-  final TokenVerifier? _tokenVerifier;
+  final TokenVerifier _tokenVerifier;
 
   final bool _requiresAuthentication;
 
@@ -30,15 +30,16 @@ class EndpointWithRequestAndParamsTarget<RequestType, ResponseType, ParamsType>
     final argument = await toRequestType(request, _requestFromJson);
     final params = await toParamsType(request, _fromParams);
 
-    final userId = _requiresAuthentication
-        ? await verifyAuthorization(request, _tokenVerifier)
-        : null;
+    final logger = loggerForRequest(request);
+    final requestContext = _requiresAuthentication
+        ? RequestContextWithUserId(
+            logger,
+            request,
+            await verifyAuthorization(request, _tokenVerifier),
+          )
+        : RequestContext(logger, request);
 
-    final response = await _function(
-      argument,
-      params,
-      RequestContext(loggerForRequest(request), request, userId),
-    );
+    final response = await _function(argument, params, requestContext);
     final responseJson = jsonEncode(response);
 
     return Response.ok(

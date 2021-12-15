@@ -14,18 +14,21 @@ class EndpointWithoutRequestTarget<ResponseType> implements Endpoint {
         _requiresAuthentication = requiresAuthentication;
 
   final EndpointWithoutRequestFunction<ResponseType> _function;
-  final TokenVerifier? _tokenVerifier;
+  final TokenVerifier _tokenVerifier;
   final bool _requiresAuthentication;
 
   @override
   FutureOr<Response> handler(Request request) async {
-    final userId = _requiresAuthentication
-        ? await verifyAuthorization(request, _tokenVerifier)
-        : null;
+    final logger = loggerForRequest(request);
+    final requestContext = _requiresAuthentication
+        ? RequestContextWithUserId(
+            logger,
+            request,
+            await verifyAuthorization(request, _tokenVerifier),
+          )
+        : RequestContext(logger, request);
 
-    final response = await _function(
-      RequestContext(loggerForRequest(request), request, userId),
-    );
+    final response = await _function(requestContext);
     final responseJson = jsonEncode(response);
 
     return Response.ok(

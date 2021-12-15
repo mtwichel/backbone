@@ -18,21 +18,23 @@ class EndpointWithoutRequestAndParamsTarget<ResponseType, ParamsType>
   final EndpointWithoutRequestAndParamsFunction<ResponseType, ParamsType>
       _function;
   final JsonConverter<ParamsType> _fromParams;
-  final TokenVerifier? _tokenVerifier;
+  final TokenVerifier _tokenVerifier;
   final bool _requiresAuthentication;
 
   @override
   FutureOr<Response> handler(Request request) async {
     final params = await toParamsType(request, _fromParams);
 
-    final userId = _requiresAuthentication
-        ? await verifyAuthorization(request, _tokenVerifier)
-        : null;
+    final logger = loggerForRequest(request);
+    final requestContext = _requiresAuthentication
+        ? RequestContextWithUserId(
+            logger,
+            request,
+            await verifyAuthorization(request, _tokenVerifier),
+          )
+        : RequestContext(logger, request);
 
-    final response = await _function(
-      params,
-      RequestContext(loggerForRequest(request), request, userId),
-    );
+    final response = await _function(params, requestContext);
     final responseJson = jsonEncode(response);
 
     return Response.ok(

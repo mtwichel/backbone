@@ -17,7 +17,7 @@ void main() async {
   router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithRequestAndParamsTarget<function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{responseType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
     requestFromJson: (json) => function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}.fromJson(json),
     fromParams: (params) => function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}.fromJson(params),
-    tokenVerifier: api.tokenVerifier,
+    tokenVerifier: api.verifyToken,
     requiresAuthentication: {{requiresAuthentication}},
   ).handler,);
   {{/hasParams}}
@@ -25,7 +25,7 @@ void main() async {
   {{^hasParams}}
   router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithRequestTarget<function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{responseType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
     requestFromJson: (json) => function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}.fromJson(json),
-    tokenVerifier: api.tokenVerifier,
+    tokenVerifier: api.verifyToken,
     requiresAuthentication: {{requiresAuthentication}},
   ).handler,);
   {{/hasParams}}
@@ -37,14 +37,14 @@ void main() async {
   {{#hasParams}}
   router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithoutRequestAndParamsTarget<function_objects.{{#pascalCase}}{{responseType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
     fromParams: (params) => function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}.fromJson(params),
-    tokenVerifier: api.tokenVerifier,
+    tokenVerifier: api.verifyToken,
     requiresAuthentication: {{requiresAuthentication}},
   ).handler,);
   {{/hasParams}}
 
   {{^hasParams}}
   router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithoutRequestTarget<function_objects.{{#pascalCase}}{{responseType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
-    tokenVerifier: api.tokenVerifier,
+    tokenVerifier: api.verifyToken,
     requiresAuthentication: {{requiresAuthentication}},
   ).handler,);
   {{/hasParams}}
