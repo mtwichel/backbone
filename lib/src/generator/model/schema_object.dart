@@ -67,7 +67,7 @@ String getTypeNameFromSchemaObject(
     case APIType.array:
       return 'List<${getTypeNameFromSchemaObject(object.items!, null)}>';
     case APIType.object:
-      return (name ?? object.referenceURI?.pathSegments[2] ?? object.title!)
+      return (object.referenceURI?.pathSegments[2] ?? object.title ?? name!)
           .pascalCase;
   }
 }

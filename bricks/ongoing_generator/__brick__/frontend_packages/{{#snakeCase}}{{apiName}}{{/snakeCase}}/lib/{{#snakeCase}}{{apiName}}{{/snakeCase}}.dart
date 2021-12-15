@@ -21,13 +21,13 @@ class {{#pascalCase}}{{apiName}}{{/pascalCase}} {
       '{{{pathWithParams}}}',
       {{#hasRequest}}data: request.toJson(),{{/hasRequest}}
       queryParameters: {
-          {{#queryParameters}}'{{name}}': params.{{name}}
+          {{#queryParameters}}'{{name}}': params.{{name}},
           {{/queryParameters}}
         },
       options: Options(
         method: {{#upperCase}}'{{method}}',{{/upperCase}}
         headers: {
-          {{#headerParameters}}'{{name}}': params.{{name}}
+          {{#headerParameters}}'{{name}}': params.{{name}},
           {{/headerParameters}}
         },
       ),

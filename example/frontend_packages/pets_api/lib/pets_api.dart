@@ -66,7 +66,9 @@ class PetsApi {
       queryParameters: {},
       options: Options(
         method: 'GET',
-        headers: {'test': params.test},
+        headers: {
+          'test': params.test,
+        },
       ),
     );
 

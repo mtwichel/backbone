@@ -78,3 +78,38 @@ Map<String, dynamic> _$UpdatePetResponseToJson(UpdatePetResponse instance) =>
     <String, dynamic>{
       'pet': instance.pet,
     };
+
+UploadImageParameters _$UploadImageParametersFromJson(
+        Map<String, dynamic> json) =>
+    UploadImageParameters(
+      petId: json['petId'] as String,
+    );
+
+Map<String, dynamic> _$UploadImageParametersToJson(
+        UploadImageParameters instance) =>
+    <String, dynamic>{
+      'petId': instance.petId,
+    };
+
+GetPetParameters _$GetPetParametersFromJson(Map<String, dynamic> json) =>
+    GetPetParameters(
+      petId: json['petId'] as String,
+      test: json['test'] as String,
+    );
+
+Map<String, dynamic> _$GetPetParametersToJson(GetPetParameters instance) =>
+    <String, dynamic>{
+      'petId': instance.petId,
+      'test': instance.test,
+    };
+
+UpdatePetParameters _$UpdatePetParametersFromJson(Map<String, dynamic> json) =>
+    UpdatePetParameters(
+      petId: json['petId'] as String,
+    );
+
+Map<String, dynamic> _$UpdatePetParametersToJson(
+        UpdatePetParameters instance) =>
+    <String, dynamic>{
+      'petId': instance.petId,
+    };

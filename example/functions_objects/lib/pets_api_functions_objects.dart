@@ -100,39 +100,42 @@ class UpdatePetResponse {
 }
 
 @JsonSerializable()
-class Pet {
-  const Pet({
-    required this.id,
-    this.name,
-    this.age,
-    required this.type,
+class UploadImageParameters {
+  const UploadImageParameters({
+    required this.petId,
   });
+  factory UploadImageParameters.fromJson(Map<String, dynamic> json) =>
+      _$UploadImageParametersFromJson(json);
 
-  factory Pet.fromJson(Map<String, dynamic> json) => _$PetFromJson(json);
+  Map<String, dynamic> toJson() => _$UploadImageParametersToJson(this);
 
-  Map<String, dynamic> toJson() => _$PetToJson(this);
-
-  final String id;
-  final String? name;
-  final int? age;
-  final String type;
+  final String petId;
 }
 
 @JsonSerializable()
-class Pet {
-  const Pet({
-    required this.id,
-    this.name,
-    this.age,
-    required this.type,
+class GetPetParameters {
+  const GetPetParameters({
+    required this.petId,
+    required this.test,
   });
+  factory GetPetParameters.fromJson(Map<String, dynamic> json) =>
+      _$GetPetParametersFromJson(json);
 
-  factory Pet.fromJson(Map<String, dynamic> json) => _$PetFromJson(json);
+  Map<String, dynamic> toJson() => _$GetPetParametersToJson(this);
 
-  Map<String, dynamic> toJson() => _$PetToJson(this);
+  final String petId;
+  final String test;
+}
 
-  final String id;
-  final String? name;
-  final int? age;
-  final String type;
+@JsonSerializable()
+class UpdatePetParameters {
+  const UpdatePetParameters({
+    required this.petId,
+  });
+  factory UpdatePetParameters.fromJson(Map<String, dynamic> json) =>
+      _$UpdatePetParametersFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdatePetParametersToJson(this);
+
+  final String petId;
 }

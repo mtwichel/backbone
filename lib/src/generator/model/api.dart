@@ -10,7 +10,7 @@ class Api {
     required this.apiName,
     required this.endpoints,
     required this.objects,
-    required this.parameterObjects,
+    required this.parameters,
     required this.backendFolder,
   });
 
@@ -48,10 +48,21 @@ class Api {
           String? paramsType;
           if (combinedParameters.isNotEmpty) {
             paramsType = '${operationId}Parameters';
+            final prunedParameters = combinedParameters.fold<List<Parameter>>(
+              <Parameter>[],
+              (acc, element) {
+                if (acc.any((curr) => curr.name == element.name)) {
+                  return acc;
+                } else {
+                  return [...acc, element];
+                }
+              },
+            );
+
             parameterObjects.add(
               ParameterObject(
                 name: paramsType,
-                parameters: combinedParameters,
+                parameters: prunedParameters,
               ),
             );
           }
@@ -117,11 +128,22 @@ class Api {
       );
     }
 
+    final prunedObjects = objects.fold<List<SchemaObject>>(
+      <SchemaObject>[],
+      (acc, element) {
+        if (acc.any((curr) => curr.name == element.name)) {
+          return acc;
+        } else {
+          return [...acc, element];
+        }
+      },
+    );
+
     return Api(
       apiName: api.info!.title!,
       endpoints: endpoints,
-      objects: objects,
-      parameterObjects: parameterObjects,
+      objects: prunedObjects,
+      parameters: parameterObjects,
       backendFolder: backendName,
     );
   }
@@ -131,6 +153,6 @@ class Api {
   final String apiName;
   final List<Endpoint> endpoints;
   final List<SchemaObject> objects;
-  final List<ParameterObject> parameterObjects;
+  final List<ParameterObject> parameters;
   final String backendFolder;
 }

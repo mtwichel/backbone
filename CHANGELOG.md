@@ -1,3 +1,7 @@
+## 0.0.1-dev.4
+
+- Fixed bug generating param objects
+
 ## 0.0.1-dev.3
 
 - Fixed bug with generating json seralizable
