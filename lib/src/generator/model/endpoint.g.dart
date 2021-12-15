@@ -11,11 +11,11 @@ Map<String, dynamic> _$EndpointToJson(Endpoint instance) => <String, dynamic>{
       'method': instance.method,
       'name': instance.name,
       'responseType': instance.responseType,
-      'hasParams': instance.hasParams,
-      'hasRequest': instance.hasRequest,
       'parameters': instance.parameters.map((e) => e.toJson()).toList(),
       'requestType': instance.requestType,
       'paramsType': instance.paramsType,
+      'hasParams': instance.hasParams,
+      'hasRequest': instance.hasRequest,
       'queryParameters':
           instance.queryParameters.map((e) => e.toJson()).toList(),
       'headerParameters':

@@ -1,15 +1,13 @@
-import 'package:args/command_runner.dart';
 import 'package:backbone/cli.dart';
 
+export 'comand_runner.dart';
 export 'commands/commands.dart';
 
 Future<void> runCli(List<String> args) async {
-  final runner = CommandRunner<void>(
+  final runner = BackendGeneratorCommandRunner(
     'main.dart',
     'A command line interface for generating Dart backends.',
-  )
-    ..addCommand(GenerateCommand())
-    ..addCommand(NewCommand());
+  )..addCommand(GenerateCommand());
 
   await runner.run(args);
 }

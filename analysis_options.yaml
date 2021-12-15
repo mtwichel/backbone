@@ -4,6 +4,7 @@ analyzer:
   exclude:
     - bricks/**
     - example/**
+    - "**/*_generator_bundle.dart"
 linter:
   rules:
     public_member_api_docs: false

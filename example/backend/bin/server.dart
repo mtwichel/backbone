@@ -3,7 +3,7 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
 import 'package:shelf_router/shelf_router.dart';
 import 'package:pets_api/pets_api.dart' as api;
-import 'package:pets_api_function_objects/pets_api_function_objects.dart'
+import 'package:pets_api_functions_objects/pets_api_functions_objects.dart'
     as function_objects;
 import 'package:backbone/backbone.dart';
 

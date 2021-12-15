@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Dart Build Runner",
+      "type": "shell",
+      "command": "dart",
+      "args": [
+        "run",
+        "build_runner",
+        "build",
+        "--delete-conflicting-outputs"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      }
+    },
+    {
+      "label": "Mason Bundle Ongoing Generator",
+      "type": "shell",
+      "command": "mason",
+      "args": [
+        "bundle",
+        "bricks/ongoing_generator",
+        "-o",
+        "lib/src/generator/bundles",
+        "-t",
+        "dart"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      }
+    },
+    {
+      "label": "Mason Bundle Initial Generator",
+      "type": "shell",
+      "command": "mason",
+      "args": [
+        "bundle",
+        "bricks/initial_generator",
+        "-o",
+        "lib/src/generator/bundles",
+        "-t",
+        "dart"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      }
+    }
+  ]
+}

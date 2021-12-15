@@ -7,39 +7,26 @@ import 'package:process_run/cmd_run.dart';
 Future<void> generateApiFiles(
   Api api, {
   String rootPath = '.',
+  required bool generateInitial,
 }) async {
   print('Generating API Files...');
-  final generator = await MasonGenerator.fromBundle(ongoingGeneratorBundle);
   final convertedApi = api.toJson();
-  await generator.generate(
-    DirectoryGeneratorTarget(
-      Directory(rootPath),
-      Logger(),
-      FileConflictResolution.overwrite,
-    ),
-    vars: convertedApi,
-  );
 
-  await _postGenerate(rootPath);
-}
+  if (generateInitial) {
+    final initialGenerator =
+        await MasonGenerator.fromBundle(initialGeneratorBundle);
+    await initialGenerator.generate(
+      DirectoryGeneratorTarget(
+        Directory(rootPath),
+        Logger(),
+        FileConflictResolution.overwrite,
+      ),
+      vars: convertedApi,
+    );
+  }
 
-Future<void> initialGenerateApiFiles(
-  Api api, {
-  String rootPath = '.',
-}) async {
-  final initialGenerator =
-      await MasonGenerator.fromBundle(initialGeneratorBundle);
   final ongoingGenerator =
       await MasonGenerator.fromBundle(ongoingGeneratorBundle);
-  final convertedApi = api.toJson();
-  await initialGenerator.generate(
-    DirectoryGeneratorTarget(
-      Directory(rootPath),
-      Logger(),
-      FileConflictResolution.overwrite,
-    ),
-    vars: convertedApi,
-  );
   await ongoingGenerator.generate(
     DirectoryGeneratorTarget(
       Directory(rootPath),
@@ -49,12 +36,16 @@ Future<void> initialGenerateApiFiles(
     vars: convertedApi,
   );
 
-  await _postGenerate(rootPath);
+  await _postGenerate(
+    outputPath: rootPath,
+  );
 }
 
-Future<void> _postGenerate(String rootPath) async {
+Future<void> _postGenerate({
+  required String outputPath,
+}) async {
   print('Formatting...');
-  await runCmd(DartCmd(['format', rootPath]));
+  await runCmd(DartCmd(['format', outputPath]));
   print('Getting Depenencies...');
   await runCmd(
     DartCmd(
@@ -64,7 +55,7 @@ Future<void> _postGenerate(String rootPath) async {
         '--directory',
         'functions_objects',
         '--directory',
-        '$rootPath/functions_objects'
+        '$outputPath/functions_objects',
       ],
     ),
   );
@@ -77,6 +68,6 @@ Future<void> _postGenerate(String rootPath) async {
       'build',
       '--delete-conflicting-outputs',
     ],
-    workingDirectory: '$rootPath/functions_objects',
+    workingDirectory: '$outputPath/functions_objects',
   );
 }

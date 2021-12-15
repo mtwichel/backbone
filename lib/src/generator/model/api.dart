@@ -11,9 +11,13 @@ class Api {
     required this.endpoints,
     required this.objects,
     required this.parameterObjects,
+    required this.backendFolder,
   });
 
-  factory Api.fromOpenApi(APIDocument api) {
+  factory Api.fromOpenApi(
+    APIDocument api, {
+    required String backendName,
+  }) {
     final endpoints = <Endpoint>[];
     final objects = <SchemaObject>[];
     final parameterObjects = <ParameterObject>[];
@@ -118,6 +122,7 @@ class Api {
       endpoints: endpoints,
       objects: objects,
       parameterObjects: parameterObjects,
+      backendFolder: backendName,
     );
   }
 
@@ -127,4 +132,5 @@ class Api {
   final List<Endpoint> endpoints;
   final List<SchemaObject> objects;
   final List<ParameterObject> parameterObjects;
+  final String backendFolder;
 }

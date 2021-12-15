@@ -32,18 +32,24 @@ dart pub global activate backbone
 
 2. Define your API using the [Open API Specification](https://swagger.io/specification/#specification), or copy the [example spec](https://github.com/mtwichel/backbone/blob/main/example/openapi.yaml).
 
-3. In the folder your spec resides, run the following command:
+3. In the folder your spec resides, run the following command. This will generate a new Backbone project in the current directory.
 
 ```bash
-backbone new
+backbone generate --new
 ```
 
 4. When the command finishes, you should see three new folders.
 
-5. As you update the spec, you can run the following command to update the API:
+5. As you update the spec, you can run the following command without `--new` to update the API:
 
 ```bash
 backbone generate
+```
+
+> For more options (including what directories you'd like generated code to reside in), run:
+
+```bash
+backbone help generate
 ```
 
 ## The Generated Code

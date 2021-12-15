@@ -2,7 +2,7 @@ library {{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects;
 
 import 'package:json_annotation/json_annotation.dart';
 
-part '{{#snakeCase}}{{apiName}}{{/snakeCase}}_function_objects.g.dart';
+part '{{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects.g.dart';
 
 {{#objects}}
 {{> object.dart }}

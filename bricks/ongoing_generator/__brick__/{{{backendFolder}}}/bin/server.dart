@@ -3,7 +3,7 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
 import 'package:shelf_router/shelf_router.dart';
 import 'package:{{#snakeCase}}{{apiName}}{{/snakeCase}}/{{#snakeCase}}{{apiName}}{{/snakeCase}}.dart' as api;
-import 'package:{{#snakeCase}}{{apiName}}{{/snakeCase}}_function_objects/{{#snakeCase}}{{apiName}}{{/snakeCase}}_function_objects.dart' as function_objects;
+import 'package:{{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects/{{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects.dart' as function_objects;
 import 'package:backbone/backbone.dart';
 
 void main() async {

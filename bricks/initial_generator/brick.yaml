@@ -5,3 +5,6 @@ vars:
   - endpoints
   - responses
   - requests
+  - frontendName
+  - backendName
+  - functionsObjectsName

@@ -1,4 +1,10 @@
 name: ongoing_generator
 description: A new brick created with the Mason CLI.
 vars:
-  - name
+  - apiName
+  - endpoints
+  - responses
+  - requests
+  - frontendName
+  - backendName
+  - functionsObjectsName
