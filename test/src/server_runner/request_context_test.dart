@@ -15,6 +15,7 @@ void main() {
     setUp(() {
       logger = MockLogger();
       rawRequest = MockRequest();
+      resetDependencies();
     });
     group('dependency', () {
       test('returns correctly', () async {
@@ -43,8 +44,8 @@ void main() {
           authenticated: false,
         );
 
-        final stringDep = await context.dependency<String>(() => 'hi');
-        expect(stringDep, 'hi');
+        final stringDep = await context.dependency<String>(() => 'test3');
+        expect(stringDep, 'test3');
 
         // We expect the string dependency to now be test since even
         // though it's already set because we're forcing it to reset

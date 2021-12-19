@@ -152,9 +152,11 @@ security:
 You should authorize the users in the functions you write (backbone doesn't support it directly). If a user is not authorized, the function should throw an `AuthorizationException`.
 
 ## Dependency Caching
+
 You can use the `RequestContext` object to inject dependencies in your functions.
 
 **Example**
+
 ```dart
 Future<GetPetsResponse> getPets(RequestContext context) async {
   final db = await context.dependency<FirestoreDatabase>(
@@ -172,28 +174,34 @@ print(await context.dependency<String>(() => 'test3'));
 ```
 
 Will print
+
 ```
 test1
 test1
 test1
 ```
 
-because the dependency for type `String` is set once the first time, and ignored the next two times. This is great if you have a database object that is expensive to initialize. You can initialize it once the first time you need it, and then re-use any subsequent times it's needed. 
+because the dependency for type `String` is set once the first time, and ignored the next two times. This is great if you have a database object that is expensive to initialize. You can initialize it once the first time you need it, and then re-use any subsequent times it's needed.
 
 If you would like to force Backbone to reset the dependency, just add the `force: true` option to the function call.
 
 **Example**
+
 ```dart
 print(await context.dependency<String>(() => 'test1'));
 print(await context.dependency<String>(() => 'test2', force: true));
 print(await context.dependency<String>(() => 'test3', force: true));
 ```
+
 Will print
+
 ```
 test1
 test2
 test3
 ```
+
+You can also reset all depencencies in your API by calling `resetDepencencies()`. This is great for testing because you can create a clean-slate environment for your tests.
 
 > Note: While we think it's a great solution to this problem, since it's all just Dart code, you can use whatever pattern you'd like.
 

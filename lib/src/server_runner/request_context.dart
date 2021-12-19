@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:backbone/backbone.dart';
 import 'package:shelf/shelf.dart';
 
+final _dependencies = <String, dynamic>{};
+
 class RequestContext {
-  RequestContext({
+  const RequestContext({
     required this.logger,
     required this.rawRequest,
     required this.authenticated,
@@ -15,8 +17,6 @@ class RequestContext {
   final Request rawRequest;
   final bool authenticated;
   final String? _userId;
-
-  final Map<String, dynamic> _dependencies = <String, dynamic>{};
 
   String get userId {
     if (authenticated && _userId == null) {
@@ -41,4 +41,8 @@ class RequestContext {
       return value;
     }
   }
+}
+
+void resetDependencies() {
+  _dependencies.clear();
 }
