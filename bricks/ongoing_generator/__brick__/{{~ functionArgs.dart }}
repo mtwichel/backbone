@@ -1,1 +1,1 @@
-{{#hasRequest}}{{#pascalCase}}{{requestType}}{{/pascalCase}} request, {{/hasRequest}}{{#hasParams}}{{#pascalCase}}{{paramsType}}{{/pascalCase}} params, {{/hasParams}}RequestContext context
+{{#hasRequest}}{{#pascalCase}}{{requestType}}{{/pascalCase}} request, {{/hasRequest}}{{#hasParams}}{{#pascalCase}}{{paramsType}}{{/pascalCase}} params, {{/hasParams}}RequestContext context,

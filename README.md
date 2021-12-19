@@ -218,12 +218,18 @@ final middlewares = <Middleware>[
 
 ### Deploying your API
 
-WIP
+The Backbone generator will create a `Dockerfile` automatically for you (in `backend/Dockerfile`) when running `backbone generate --new`. You can build the Dockerfile by running
+
+```bash
+docker build . -f backend/Dockerfile -t [API_NAME]
+```
+
+You can also use it with [Google Cloud Run](https://cloud.google.com/run), which is probably the easiest way to deploy your API.
 
 ## Future Tasks
 
 - [ ] Full support for multipart form data requests
-- [ ] Auto-generate Dockerfile for deployment
+- [x] Auto-generate Dockerfile for deployment
 - [ ] Include a mock request context and mock logger
 - [x] Support for dependency injection using the request context
 - [x] Support for middleware

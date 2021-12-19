@@ -6,7 +6,7 @@ import 'package:{{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects/{{#sna
 
 Future<String> verifyToken(String token) async {
   // TODO: implement verifyToken
-  return 'fake-user-id';
+  throw UnimplementedError('API is not set up for verifing auth tokens yet.');
 }
 
 final middlewares = <Middleware> [];
