@@ -59,7 +59,7 @@
         "isDefault": true
       },
       "presentation": {
-        "reveal": "always"
+        "reveal": "silent"
       }
     }
   ]

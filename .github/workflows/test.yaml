@@ -15,7 +15,7 @@ jobs:
           sdk: stable
 
       - name: Get Dependencies
-        run: dart pub Get
+        run: dart pub get
 
       - name: Check Format
         run: dart format --set-exit-if-changed lib test
