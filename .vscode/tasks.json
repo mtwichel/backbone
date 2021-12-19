@@ -49,6 +49,18 @@
       "presentation": {
         "reveal": "silent"
       }
+    },
+    {
+      "label": "Run Tests",
+      "type": "shell",
+      "command": "./run_tests.sh",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      }
     }
   ]
 }
