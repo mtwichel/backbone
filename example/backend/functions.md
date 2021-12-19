@@ -1,7 +1,7 @@
 # Functions needed to implement on the backend
 
 ```dart
-Future<UploadImageResponse> uploadImage(UploadImageParameters params, RequestContext context) {
+Future<UploadImageResponse> uploadImage(UploadImageParameters params, RequestContext context,) async {
   // TODO implement uploadImage
 }
 ```
@@ -9,7 +9,7 @@ Future<UploadImageResponse> uploadImage(UploadImageParameters params, RequestCon
 
 
 ```dart
-Future<ListPetsResponse> listPets(RequestContext context) {
+Future<ListPetsResponse> listPets(RequestContext context,) async {
   // TODO implement listPets
 }
 ```
@@ -17,7 +17,7 @@ Future<ListPetsResponse> listPets(RequestContext context) {
 
 
 ```dart
-Future<CreatePetResponse> createPet(Pet request, RequestContext context) {
+Future<CreatePetResponse> createPet(Pet request, RequestContext context,) async {
   // TODO implement createPet
 }
 ```
@@ -25,7 +25,7 @@ Future<CreatePetResponse> createPet(Pet request, RequestContext context) {
 
 
 ```dart
-Future<GetPetResponse> getPet(GetPetParameters params, RequestContext context) {
+Future<GetPetResponse> getPet(GetPetParameters params, RequestContext context,) async {
   // TODO implement getPet
 }
 ```
@@ -33,7 +33,7 @@ Future<GetPetResponse> getPet(GetPetParameters params, RequestContext context) {
 
 
 ```dart
-Future<UpdatePetResponse> updatePet(Pet request, UpdatePetParameters params, RequestContext context) {
+Future<UpdatePetResponse> updatePet(Pet request, UpdatePetParameters params, RequestContext context,) async {
   // TODO implement updatePet
 }
 ```

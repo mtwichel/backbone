@@ -8,7 +8,7 @@ final ongoingGeneratorBundle = MasonBundle.fromJson(<String, dynamic>{
     {
       "path": "{{~ functionArgs.dart }}",
       "data":
-          "e3sjaGFzUmVxdWVzdH19e3sjcGFzY2FsQ2FzZX19e3tyZXF1ZXN0VHlwZX19e3svcGFzY2FsQ2FzZX19IHJlcXVlc3QsIHt7L2hhc1JlcXVlc3R9fXt7I2hhc1BhcmFtc319e3sjcGFzY2FsQ2FzZX19e3twYXJhbXNUeXBlfX17ey9wYXNjYWxDYXNlfX0gcGFyYW1zLCB7ey9oYXNQYXJhbXN9fVJlcXVlc3RDb250ZXh0IGNvbnRleHQ=",
+          "e3sjaGFzUmVxdWVzdH19e3sjcGFzY2FsQ2FzZX19e3tyZXF1ZXN0VHlwZX19e3svcGFzY2FsQ2FzZX19IHJlcXVlc3QsIHt7L2hhc1JlcXVlc3R9fXt7I2hhc1BhcmFtc319e3sjcGFzY2FsQ2FzZX19e3twYXJhbXNUeXBlfX17ey9wYXNjYWxDYXNlfX0gcGFyYW1zLCB7ey9oYXNQYXJhbXN9fVJlcXVlc3RDb250ZXh0IGNvbnRleHQs",
       "type": "text"
     },
     {
@@ -20,7 +20,7 @@ final ongoingGeneratorBundle = MasonBundle.fromJson(<String, dynamic>{
     {
       "path": "{{~ function.dart }}",
       "data":
-          "RnV0dXJlPHt7I3Bhc2NhbENhc2V9fXt7cmVzcG9uc2VUeXBlfX17ey9wYXNjYWxDYXNlfX0+IHt7I2NhbWVsQ2FzZX19e3tuYW1lfX17ey9jYW1lbENhc2V9fSh7ez4gZnVuY3Rpb25BcmdzLmRhcnQgfX0pIHsKICAvLyBUT0RPIGltcGxlbWVudCB7eyNjYW1lbENhc2V9fXt7bmFtZX19e3svY2FtZWxDYXNlfX0KfQ==",
+          "RnV0dXJlPHt7I3Bhc2NhbENhc2V9fXt7cmVzcG9uc2VUeXBlfX17ey9wYXNjYWxDYXNlfX0+IHt7I2NhbWVsQ2FzZX19e3tuYW1lfX17ey9jYW1lbENhc2V9fSh7ez4gZnVuY3Rpb25BcmdzLmRhcnQgfX0pIGFzeW5jIHsKICAvLyBUT0RPIGltcGxlbWVudCB7eyNjYW1lbENhc2V9fXt7bmFtZX19e3svY2FtZWxDYXNlfX0KfQ==",
       "type": "text"
     },
     {
