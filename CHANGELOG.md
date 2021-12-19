@@ -1,3 +1,9 @@
+## 0.0.1-dev.9
+
+- Auto create `Dockerfile` when running `backbone generate --new`
+- Add support for middleware
+- Add support for dependency caching
+
 ## 0.0.1-dev.6
 
 - Make authentication return `userId` as `String` instead of `String?`
