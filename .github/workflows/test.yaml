@@ -9,6 +9,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Set Up dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
       - name: Get Dependencies
         run: dart pub Get
 
@@ -24,7 +29,7 @@ jobs:
           dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
 
       - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1
+        uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
         with:
           min_coverage: 0
           exclude: "lib/**/*.g.dart lib/src/generator/bundles/**.dart"
