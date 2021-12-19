@@ -1,6 +1,12 @@
 library pets_api;
 
-Future<String?> verifyToken(String? token) async {
+import 'package:backbone/backbone.dart';
+import 'package:shelf/shelf.dart';
+import 'package:pets_api_functions_objects/pets_api_functions_objects.dart';
+
+Future<String> verifyToken(String token) async {
   // TODO: implement verifyToken
-  return null;
+  return 'fake-user-id';
 }
+
+final middlewares = <Middleware>[];

@@ -20,7 +20,7 @@ void main() async {
       api.uploadImage,
       fromParams: (params) =>
           function_objects.UploadImageParameters.fromJson(params),
-      tokenVerifier: api.tokenVerifier,
+      tokenVerifier: api.verifyToken,
       requiresAuthentication: false,
     ).handler,
   );
@@ -30,7 +30,7 @@ void main() async {
     '/v1/pets',
     EndpointWithoutRequestTarget<function_objects.ListPetsResponse>(
       api.listPets,
-      tokenVerifier: api.tokenVerifier,
+      tokenVerifier: api.verifyToken,
       requiresAuthentication: false,
     ).handler,
   );
@@ -42,7 +42,7 @@ void main() async {
         function_objects.CreatePetResponse>(
       api.createPet,
       requestFromJson: (json) => function_objects.Pet.fromJson(json),
-      tokenVerifier: api.tokenVerifier,
+      tokenVerifier: api.verifyToken,
       requiresAuthentication: true,
     ).handler,
   );
@@ -55,7 +55,7 @@ void main() async {
       api.getPet,
       fromParams: (params) =>
           function_objects.GetPetParameters.fromJson(params),
-      tokenVerifier: api.tokenVerifier,
+      tokenVerifier: api.verifyToken,
       requiresAuthentication: false,
     ).handler,
   );
@@ -71,13 +71,22 @@ void main() async {
       requestFromJson: (json) => function_objects.Pet.fromJson(json),
       fromParams: (params) =>
           function_objects.UpdatePetParameters.fromJson(params),
-      tokenVerifier: api.tokenVerifier,
+      tokenVerifier: api.verifyToken,
       requiresAuthentication: false,
     ).handler,
   );
 
+  var pipeline = Pipeline();
+
+  for (final middleware in api.middlewares) {
+    pipeline = pipeline.addMiddleware(middleware);
+  }
+  pipeline = pipeline.addMiddleware(authenticationMiddleware());
+
+  final handler = pipeline.addHandler(router);
+
   final server = await shelf_io.serve(
-    Pipeline().addMiddleware(authenticationMiddleware()).addHandler(router),
+    handler,
     InternetAddress.anyIPv4,
     int.parse(port),
   );

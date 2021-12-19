@@ -159,7 +159,7 @@ WIP
 - [ ] Full support for multipart form data requests
 - [ ] Auto-generate Dockerfile for deployment
 - [ ] Include a mock request context and mock logger
-- [ ] Support for dependency injection using the request context
-- [ ] Support for middleware
+- [x] Support for dependency injection using the request context
+- [x] Support for middleware
 - [ ] Nice logging while generator is running
 - [x] Support for authentication
