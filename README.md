@@ -147,11 +147,11 @@ security:
 
 3. When creating your frontend object, pass the `authToken` into the constructor.
 
-## Authorization
+### Authorization
 
 You should authorize the users in the functions you write (backbone doesn't support it directly). If a user is not authorized, the function should throw an `AuthorizationException`.
 
-## Dependency Caching
+### Dependency Caching
 
 You can use the `RequestContext` object to inject dependencies in your functions.
 
@@ -204,6 +204,17 @@ test3
 You can also reset all depencencies in your API by calling `resetDepencencies()`. This is great for testing because you can create a clean-slate environment for your tests.
 
 > Note: While we think it's a great solution to this problem, since it's all just Dart code, you can use whatever pattern you'd like.
+
+### Middleware
+
+Backbone fully supports adding middleware to your server. From your top level `backend/lib/[API_NAME].dart` file, export a list of middleware named `middlewares` you'd like to use in the order you'd like them to process. For example:
+
+```dart
+final middlewares = <Middleware>[
+  fancyLoggingMiddleware(),
+  corsMiddleware(),
+];
+```
 
 ### Deploying your API
 
