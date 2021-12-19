@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:backbone/backbone.dart';
 import 'package:shelf/shelf.dart';
 
 class RequestContext {
-  const RequestContext({
+  RequestContext({
     required this.logger,
     required this.rawRequest,
     required this.authenticated,
@@ -14,6 +16,8 @@ class RequestContext {
   final bool authenticated;
   final String? _userId;
 
+  final Map<String, dynamic> _dependencies = <String, dynamic>{};
+
   String get userId {
     if (authenticated && _userId == null) {
       throw const UnauthenticatedException(
@@ -21,6 +25,20 @@ class RequestContext {
       );
     } else {
       return _userId!;
+    }
+  }
+
+  Future<T> dependency<T>(
+    FutureOr<T> Function() builder, {
+    bool force = false,
+  }) async {
+    final key = T.toString();
+    if (!force && _dependencies.containsKey(key)) {
+      return _dependencies[key] as T;
+    } else {
+      final value = await builder();
+      _dependencies[key] = value;
+      return value;
     }
   }
 }

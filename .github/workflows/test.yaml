@@ -1,0 +1,35 @@
+name: Run Tests
+
+on: pull_request
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set Up dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Get Dependencies
+        run: dart pub get
+
+      - name: Check Format
+        run: dart format --set-exit-if-changed lib test
+
+      - name: Check for Analysis Errors
+        run: dart analyze lib test
+
+      - name: Run Tests
+        run: |
+          dart test --coverage=coverage
+          dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
+
+      - name: Check Code Coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
+        with:
+          min_coverage: 0
+          exclude: "lib/**/*.g.dart lib/src/generator/bundles/**.dart"
