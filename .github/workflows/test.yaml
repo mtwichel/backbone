@@ -24,7 +24,7 @@ jobs:
           dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
 
       - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        uses: VeryGoodOpenSource/very_good_coverage@v1
         with:
           min_coverage: 0
           exclude: "lib/**/*.g.dart lib/src/generator/bundles/**.dart"
