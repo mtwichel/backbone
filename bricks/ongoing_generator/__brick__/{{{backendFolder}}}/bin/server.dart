@@ -54,10 +54,17 @@ void main() async {
 
   {{/endpoints}}
 
+  var pipeline = Pipeline();
+
+  for (final middleware in api.middlewares) {
+    pipeline = pipeline.addMiddleware(middleware);
+  }
+  pipeline = pipeline.addMiddleware(authenticationMiddleware());
+
+  final handler = pipeline.addHandler(router);
+
   final server = await shelf_io.serve(
-    Pipeline()
-      .addMiddleware(authenticationMiddleware())
-      .addHandler(router),
+    handler,
     InternetAddress.anyIPv4,
     int.parse(port),
   );
