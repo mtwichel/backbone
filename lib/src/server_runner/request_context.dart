@@ -28,6 +28,13 @@ class RequestContext {
     }
   }
 
+  RequestContext copyWithUserId(String userId) => RequestContext(
+        logger: logger,
+        rawRequest: rawRequest,
+        authenticated: authenticated,
+        userId: userId,
+      );
+
   Future<T> dependency<T>(
     FutureOr<T> Function() builder, {
     bool force = false,
