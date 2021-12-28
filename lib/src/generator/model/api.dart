@@ -109,8 +109,12 @@ class Api {
           );
 
           String? requestName;
+          final requestContentType =
+              (operation.requestBody?.content?.keys.isNotEmpty ?? false)
+                  ? operation.requestBody?.content?.keys.first
+                  : null;
           final requestSchema =
-              operation.requestBody?.content?['application/json']?.schema;
+              operation.requestBody?.content?[requestContentType]?.schema;
 
           if (requestSchema != null) {
             requestName = requestSchema.referenceURI?.pathSegments[2] ??
@@ -149,6 +153,7 @@ class Api {
               parameters: combinedParameters,
               requiresAuthentication:
                   securitySchemes != null && securitySchemes.isNotEmpty,
+              requestContentType: requestContentType,
             ),
           );
         }

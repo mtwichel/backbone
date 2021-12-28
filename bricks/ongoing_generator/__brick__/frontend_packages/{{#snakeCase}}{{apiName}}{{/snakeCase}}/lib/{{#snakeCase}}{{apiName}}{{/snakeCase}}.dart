@@ -32,6 +32,8 @@ class {{#pascalCase}}{{apiName}}{{/pascalCase}} {
           {{#headerParameters}}'{{name}}': params.{{name}},
           {{/headerParameters}}
           if (authToken != null) 'Authorization': 'Bearer $authToken',
+          {{#hasJsonRequest}}'Content-Type': 'application/json',{{/hasJsonRequest}}
+          {{#hasMultipartRequest}}'Content-Type': 'multipart/form-data',{{/hasMultipartRequest}}
         },
       ),
     );

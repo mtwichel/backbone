@@ -14,6 +14,7 @@ class Endpoint {
     required this.requiresAuthentication,
     this.requestType,
     this.paramsType,
+    this.requestContentType,
   });
 
   Map<String, dynamic> toJson() => _$EndpointToJson(this);
@@ -26,9 +27,12 @@ class Endpoint {
   final String? requestType;
   final String? paramsType;
   final bool requiresAuthentication;
+  final String? requestContentType;
 
   bool get hasParams => parameters.isNotEmpty;
   bool get hasRequest => requestType != null;
+  bool get hasJsonRequest => requestContentType == 'application/json';
+  bool get hasMultipartRequest => requestContentType == 'multipart/form-data';
 
   List<Parameter> get queryParameters =>
       parameters.where((p) => p.isQuery).toList();
