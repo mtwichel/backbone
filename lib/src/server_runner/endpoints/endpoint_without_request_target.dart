@@ -20,14 +20,17 @@ class EndpointWithoutRequestTarget<ResponseType> implements Endpoint {
   @override
   FutureOr<Response> handler(Request request) async {
     final logger = loggerForRequest(request);
-    final requestContext = RequestContext(
+    var requestContext = RequestContext(
       logger: logger,
       rawRequest: request,
-      userId: _requiresAuthentication
-          ? await verifyAuthorization(request, _tokenVerifier)
-          : null,
       authenticated: _requiresAuthentication,
     );
+
+    if (_requiresAuthentication) {
+      requestContext = requestContext.copyWithUserId(
+        await verifyAuthorization(requestContext, _tokenVerifier),
+      );
+    }
 
     final response = await _function(requestContext);
     final responseJson = jsonEncode(response);

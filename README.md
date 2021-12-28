@@ -121,7 +121,7 @@ Backbone supports authentication via JWTs automatically. To use it, you need to 
 1. In you `backend/lib/[API_NAME].dart` folder, implement the function:
 
 ```dart
-Future<String> verifyToken(String token) async {
+Future<String> verifyToken(String token, RequestContext context) async {
   // TODO: implement verifyToken
 }
 ```

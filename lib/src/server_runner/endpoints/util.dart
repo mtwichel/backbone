@@ -6,7 +6,10 @@ import 'package:http_parser/http_parser.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
-typedef TokenVerifier = FutureOr<String> Function(String token);
+typedef TokenVerifier = FutureOr<String> Function(
+  String token,
+  RequestContext context,
+);
 typedef JsonConverter<T> = T Function(Map<String, dynamic> json);
 
 Future<RequestType> toRequestType<RequestType>(
@@ -86,10 +89,10 @@ Future<Object?> decodeJson(Request request) async {
 }
 
 Future<String> verifyAuthorization(
-  Request request,
+  RequestContext context,
   TokenVerifier tokenVerifier,
 ) async {
-  final authHeader = request.headers['Authorization'];
+  final authHeader = context.rawRequest.headers['Authorization'];
   if (authHeader == null) {
     throw BadRequestException(401, 'No Authorization header present');
   }
@@ -110,5 +113,5 @@ Future<String> verifyAuthorization(
 
   final token = authHeaderParts.last;
 
-  return await tokenVerifier(token);
+  return await tokenVerifier(token, context);
 }
