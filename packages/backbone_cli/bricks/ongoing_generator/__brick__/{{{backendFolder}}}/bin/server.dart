@@ -59,7 +59,9 @@ void main() async {
   for (final middleware in api.middlewares) {
     pipeline = pipeline.addMiddleware(middleware);
   }
-  pipeline = pipeline.addMiddleware(authenticationMiddleware());
+  pipeline = pipeline
+    .addMiddleware(createLoggingMiddleware(await currentProjectId()))
+    .addMiddleware(authenticationMiddleware());
 
   final handler = pipeline.addHandler(router);
 

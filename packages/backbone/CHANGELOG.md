@@ -1,3 +1,7 @@
+## 0.0.1-dev.12
+
+- Added fuction to determine which gcp project you are running in.
+
 ## 0.0.1-dev.11
 
 - The backbone package is now a seperate package from the CLI, which can be found at [pub.dev/packages/backbone_cli](https://pub.dev/packages/backbone_cli).
