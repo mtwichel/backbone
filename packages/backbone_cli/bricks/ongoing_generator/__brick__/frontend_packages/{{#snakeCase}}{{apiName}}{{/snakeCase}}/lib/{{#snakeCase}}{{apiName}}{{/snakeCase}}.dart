@@ -3,7 +3,9 @@ library {{#snakeCase}}{{apiName}}{{/snakeCase}};
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:{{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects/{{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects.dart';
+import 'package:{{#snakeCase}}{{apiName}}{{/snakeCase}}/{{#snakeCase}}{{apiName}}{{/snakeCase}}.dart';
+
+export 'package:{{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects/{{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects.dart';
 
 
 class {{#pascalCase}}{{apiName}}{{/pascalCase}} {
