@@ -1,0 +1,14 @@
+name: {{#snakeCase}}{{apiName}}{{/snakeCase}}
+version: 0.0.1
+publish_to: none
+
+environment: 
+  sdk: ">=2.12.0 <3.0.0"
+
+
+dependencies:
+  shelf: ^1.2.0
+  shelf_router: ^1.1.2
+  backbone: ^0.0.1-dev.11
+  {{#snakeCase}}{{apiName}}{{/snakeCase}}_functions_objects:
+    path: ../functions_objects
