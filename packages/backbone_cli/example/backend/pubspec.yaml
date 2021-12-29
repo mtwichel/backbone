@@ -8,6 +8,6 @@ environment:
 dependencies:
   shelf: ^1.2.0
   shelf_router: ^1.1.2
-  backbone: ^0.0.1-dev.10
+  backbone: ^0.0.1-dev.11
   pets_api_functions_objects:
     path: ../functions_objects
