@@ -1,3 +1,7 @@
+## 0.0.1-dev.3
+
+- Frontend package now exports functions objects
+
 ## 0.0.1-dev.2
 
 - Server now properly uses the logging middleware
