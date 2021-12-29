@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:backbone/cli.dart';
+import 'package:backbone_cli/backbone_cli.dart';
 import 'package:mason/mason.dart';
 import 'package:process_run/cmd_run.dart';
 

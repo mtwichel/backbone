@@ -1,3 +1,7 @@
+## 0.0.1-dev.11
+
+- The backbone package is now a seperate package from the CLI, which can be found at [pub.dev/packages/backbone_cli](https://pub.dev/packages/backbone_cli).
+
 ## 0.0.1-dev.10
 
 - **breaking** `verifyToken` function now must include a `RequestContext` parameter. This can be used to get cached dependencies, which is often useful to decoded the JWT.

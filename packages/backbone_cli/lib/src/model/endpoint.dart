@@ -1,4 +1,4 @@
-import 'package:backbone/cli.dart';
+import 'package:backbone_cli/backbone_cli.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'endpoint.g.dart';

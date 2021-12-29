@@ -1,4 +1,4 @@
-import 'package:backbone/cli.dart';
+import 'package:backbone_cli/backbone_cli.dart';
 
 export 'comand_runner.dart';
 export 'commands/commands.dart';

@@ -1,5 +1,5 @@
 import 'package:args/command_runner.dart';
-import 'package:backbone/cli.dart';
+import 'package:backbone_cli/backbone_cli.dart';
 
 class GenerateCommand extends Command<void> {
   GenerateCommand() {

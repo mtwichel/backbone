@@ -4,6 +4,9 @@ on: pull_request
 
 jobs:
   run-tests:
+    defaults:
+      run:
+        working-directory: packages/backbone
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

@@ -1,6 +1,6 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:backbone/cli.dart';
+import 'package:backbone_cli/backbone_cli.dart';
 
 class BackendGeneratorCommandRunner extends CommandRunner<void> {
   BackendGeneratorCommandRunner(String executableName, String description)
