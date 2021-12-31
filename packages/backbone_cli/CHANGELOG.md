@@ -1,3 +1,7 @@
+## 0.0.1-dev.4
+
+- Frontend packages now doesn't reparse json responses
+
 ## 0.0.1-dev.2
 
 - Server now properly uses the logging middleware

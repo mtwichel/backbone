@@ -3,7 +3,9 @@ library pets_api;
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:pets_api_functions_objects/pets_api_functions_objects.dart';
+import 'package:pets_api/pets_api.dart';
+
+export 'package:pets_api_functions_objects/pets_api_functions_objects.dart';
 
 class PetsApi {
   const PetsApi({
@@ -28,9 +30,7 @@ class PetsApi {
       ),
     );
 
-    final body = jsonDecode(response.data);
-
-    return UploadImageResponse.fromJson(body);
+    return UploadImageResponse.fromJson(response.data);
   }
 
   Future<ListPetsResponse> listPets() async {
@@ -45,9 +45,7 @@ class PetsApi {
       ),
     );
 
-    final body = jsonDecode(response.data);
-
-    return ListPetsResponse.fromJson(body);
+    return ListPetsResponse.fromJson(response.data);
   }
 
   Future<CreatePetResponse> createPet(Pet request) async {
@@ -63,9 +61,7 @@ class PetsApi {
       ),
     );
 
-    final body = jsonDecode(response.data);
-
-    return CreatePetResponse.fromJson(body);
+    return CreatePetResponse.fromJson(response.data);
   }
 
   Future<GetPetResponse> getPet(GetPetParameters params) async {
@@ -81,9 +77,7 @@ class PetsApi {
       ),
     );
 
-    final body = jsonDecode(response.data);
-
-    return GetPetResponse.fromJson(body);
+    return GetPetResponse.fromJson(response.data);
   }
 
   Future<UpdatePetResponse> updatePet(
@@ -102,8 +96,6 @@ class PetsApi {
       ),
     );
 
-    final body = jsonDecode(response.data);
-
-    return UpdatePetResponse.fromJson(body);
+    return UpdatePetResponse.fromJson(response.data);
   }
 }

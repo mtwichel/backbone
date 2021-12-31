@@ -36,9 +36,7 @@ class {{#pascalCase}}{{apiName}}{{/pascalCase}} {
       ),
     );
 
-    final body = jsonDecode(response.data);
-
-    return {{#pascalCase}}{{responseType}}{{/pascalCase}}.fromJson(body);
+    return {{#pascalCase}}{{responseType}}{{/pascalCase}}.fromJson(response.data);
   }
   {{/endpoints}}
 }

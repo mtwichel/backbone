@@ -24,7 +24,7 @@
         "bundle",
         "bricks/ongoing_generator",
         "-o",
-        "lib/src/generator/bundles",
+        "lib/src/bundles",
         "-t",
         "dart"
       ],
@@ -41,7 +41,7 @@
         "bundle",
         "bricks/initial_generator",
         "-o",
-        "lib/src/generator/bundles",
+        "lib/src/bundles",
         "-t",
         "dart"
       ],
