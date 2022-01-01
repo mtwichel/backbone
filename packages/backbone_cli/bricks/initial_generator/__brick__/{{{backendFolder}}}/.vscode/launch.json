@@ -5,6 +5,9 @@
       "type": "dart",
       "request": "launch",
       "program": "bin/server.dart",
+      "env": {
+        "RUNNING_LOCALLY": "TRUE",
+      }
     }
   ]
 }

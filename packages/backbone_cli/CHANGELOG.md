@@ -1,3 +1,7 @@
+## 0.0.1-dev.5
+
+- Added option for running locally as command line (for logging)
+
 ## 0.0.1-dev.4
 
 - Frontend packages now doesn't reparse json responses
