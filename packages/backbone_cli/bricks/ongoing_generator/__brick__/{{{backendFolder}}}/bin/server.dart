@@ -53,6 +53,7 @@ void main() async {
   {{/hasRequest}}
 
   {{/endpoints}}
+  final runningLocally = Platform.environment['RUNNING_LOCALLY'] == 'TRUE';
 
   var pipeline = Pipeline();
 
@@ -60,7 +61,10 @@ void main() async {
     pipeline = pipeline.addMiddleware(middleware);
   }
   pipeline = pipeline
-    .addMiddleware(createLoggingMiddleware(await currentProjectId()))
+    .addMiddleware(createLoggingMiddleware(
+        runningLocally ? null : await currentProjectId(),
+      ),
+    )
     .addMiddleware(authenticationMiddleware());
 
   final handler = pipeline.addHandler(router);
