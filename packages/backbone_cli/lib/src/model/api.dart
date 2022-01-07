@@ -58,11 +58,7 @@ class Api {
           final combinedParameters = [...?pathParamers, ...?operationParameters]
               .where((p) => p != null && p.name != null)
               .map(
-                (parameter) => Parameter(
-                  name: parameter!.name!,
-                  required: parameter.isRequired,
-                  type: parameterTypeFromOpenApi(parameter.location!),
-                ),
+                (parameter) => Parameter.fromOpenApi(parameter: parameter!),
               )
               .toList();
           String? paramsType;

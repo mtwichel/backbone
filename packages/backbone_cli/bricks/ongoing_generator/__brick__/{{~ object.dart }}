@@ -1,16 +1,23 @@
 {{#isObject}}
 {{#description}}/// {{{description}}}{{/description}}
-@JsonSerializable()
 class {{#pascalCase}}{{name}}{{/pascalCase}} {
   const {{#pascalCase}}{{name}}{{/pascalCase}}({
-    {{#fields}}{{#required}}required {{/required}}this.{{name}},
+    {{#fields}}{{#required}}required {{/required}}this.{{#camelCase}}{{name}}{{/camelCase}},
     {{/fields}}
   });
 
-  factory {{#pascalCase}}{{name}}{{/pascalCase}}.fromJson(Map<String, dynamic> json) => _${{#pascalCase}}{{name}}{{/pascalCase}}FromJson(json);
+  factory {{#pascalCase}}{{name}}{{/pascalCase}}.fromJson(Map<String, dynamic> json) {
+    return {{#pascalCase}}{{name}}{{/pascalCase}}(
+      {{#fields}}{{#camelCase}}{{name}}{{/camelCase}}: {{{fromJsonString}}},
+      {{/fields}}
+    );
+  }
 
-  Map<String, dynamic> toJson() => _${{#pascalCase}}{{name}}{{/pascalCase}}ToJson(this);
-
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    {{#fields}}'{{name}}': {{{toJsonString}}},
+    {{/fields}}
+  };
+  
   {{#fields}}final {{{typeName}}}{{^required}}?{{/required}} {{#camelCase}}{{name}}{{/camelCase}};
   {{/fields}}
 }

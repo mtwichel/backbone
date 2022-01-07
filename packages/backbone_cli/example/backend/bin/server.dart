@@ -76,13 +76,19 @@ void main() async {
     ).handler,
   );
 
+  final runningLocally = Platform.environment['RUNNING_LOCALLY'] == 'TRUE';
+
   var pipeline = Pipeline();
 
   for (final middleware in api.middlewares) {
     pipeline = pipeline.addMiddleware(middleware);
   }
   pipeline = pipeline
-      .addMiddleware(createLoggingMiddleware(await currentProjectId()))
+      .addMiddleware(
+        createLoggingMiddleware(
+          runningLocally ? null : await currentProjectId(),
+        ),
+      )
       .addMiddleware(authenticationMiddleware());
 
   final handler = pipeline.addHandler(router);

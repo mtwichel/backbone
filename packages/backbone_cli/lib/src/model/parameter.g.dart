@@ -8,15 +8,24 @@ part of 'parameter.dart';
 
 Map<String, dynamic> _$ParameterToJson(Parameter instance) => <String, dynamic>{
       'name': instance.name,
+      'fields': instance.fields?.map((e) => e.toJson()).toList(),
+      'isObject': instance.isObject,
+      'isArray': instance.isArray,
+      'description': instance.description,
+      'typeName': instance.typeName,
       'required': instance.required,
-      'type': _$ParameterTypeEnumMap[instance.type],
+      'itemsType': instance.itemsType?.toJson(),
+      'isRoot': instance.isRoot,
+      'toJsonString': instance.toJsonString,
+      'fromJsonString': instance.fromJsonString,
+      'location': _$ParameterLocationEnumMap[instance.location],
       'isHeader': instance.isHeader,
       'isQuery': instance.isQuery,
       'isPath': instance.isPath,
     };
 
-const _$ParameterTypeEnumMap = {
-  ParameterType.header: 'header',
-  ParameterType.query: 'query',
-  ParameterType.path: 'path',
+const _$ParameterLocationEnumMap = {
+  ParameterLocation.header: 'header',
+  ParameterLocation.query: 'query',
+  ParameterLocation.path: 'path',
 };
