@@ -22,7 +22,11 @@ Future<RequestType> toRequestType<RequestType>(
   if ((jsonObject is! Map<String, dynamic>?) || jsonObject == null) {
     throw BadRequestException(400, 'Expected a JSON object');
   }
-  return fromJson(jsonObject);
+  try {
+    return fromJson(jsonObject);
+  } catch (_) {
+    throw BadRequestException(400, 'Error parsing json object');
+  }
 }
 
 Future<ParamsType> toParamsType<ParamsType>(
@@ -34,8 +38,11 @@ Future<ParamsType> toParamsType<ParamsType>(
     ...request.headers,
     ...request.requestedUri.queryParameters,
   };
-
-  return fromParams(combinedParams);
+  try {
+    return fromParams(combinedParams);
+  } catch (_) {
+    throw BadRequestException(400, 'Error parsing parameters');
+  }
 }
 
 Map<String, dynamic> combinedParamsMap(Request request) {

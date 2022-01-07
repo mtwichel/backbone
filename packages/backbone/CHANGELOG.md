@@ -1,3 +1,7 @@
+## 0.0.1-dev.13
+
+- Catching json parsing errors
+
 ## 0.0.1-dev.12
 
 - Added fuction to determine which gcp project you are running in.
