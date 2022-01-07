@@ -1,3 +1,7 @@
+## 0.0.1-dev.7
+
+- Generated `toJson` and `fromJson` methods.
+
 ## 0.0.1-dev.5
 
 - Added option for running locally as command line (for logging)

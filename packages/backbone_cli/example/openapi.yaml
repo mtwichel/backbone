@@ -145,9 +145,14 @@ components:
           type: integer
         type:
           $ref: "#/components/schemas/PetType"
+        other-names:
+          type: array
+          items:
+            type: string
       required:
         - id
         - type
+        - other-names
 
     PetType:
       type: string

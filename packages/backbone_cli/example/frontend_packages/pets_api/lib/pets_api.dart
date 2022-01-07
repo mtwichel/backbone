@@ -1,7 +1,5 @@
 library pets_api;
 
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:pets_api/pets_api.dart';
 

@@ -15,4 +15,8 @@ Map<String, dynamic> _$SchemaObjectToJson(SchemaObject instance) =>
       'description': instance.description,
       'typeName': instance.typeName,
       'required': instance.required,
+      'itemsType': instance.itemsType?.toJson(),
+      'isRoot': instance.isRoot,
+      'toJsonString': instance.toJsonString,
+      'fromJsonString': instance.fromJsonString,
     };

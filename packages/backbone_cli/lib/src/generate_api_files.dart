@@ -46,28 +46,4 @@ Future<void> _postGenerate({
 }) async {
   print('Formatting...');
   await runCmd(DartCmd(['format', outputPath]));
-  print('Getting Depenencies...');
-  await runCmd(
-    DartCmd(
-      [
-        'pub',
-        'get',
-        '--directory',
-        'functions_objects',
-        '--directory',
-        '$outputPath/functions_objects',
-      ],
-    ),
-  );
-  print('Building JSON Parsers...');
-  await runExecutableArguments(
-    'dart',
-    [
-      'run',
-      'build_runner',
-      'build',
-      '--delete-conflicting-outputs',
-    ],
-    workingDirectory: '$outputPath/functions_objects',
-  );
 }
