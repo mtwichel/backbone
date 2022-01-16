@@ -1,3 +1,7 @@
+## 0.0.1-dev.8
+
+- Fix bug where frontend params were generating incorrectly.
+
 ## 0.0.1-dev.7
 
 - Generated `toJson` and `fromJson` methods.

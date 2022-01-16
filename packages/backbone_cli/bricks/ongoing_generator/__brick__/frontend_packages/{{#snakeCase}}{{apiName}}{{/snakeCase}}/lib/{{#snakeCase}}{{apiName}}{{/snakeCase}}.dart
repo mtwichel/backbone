@@ -23,13 +23,13 @@ class {{#pascalCase}}{{apiName}}{{/pascalCase}} {
       '{{{pathWithParams}}}',
       {{#hasRequest}}data: request.toJson(),{{/hasRequest}}
       queryParameters: {
-          {{#queryParameters}}'{{name}}': params.{{name}},
+          {{#queryParameters}}'{{name}}': params.{{#camelCase}}{{name}}{{/camelCase}},
           {{/queryParameters}}
         },
       options: Options(
         method: {{#upperCase}}'{{method}}',{{/upperCase}}
         headers: {
-          {{#headerParameters}}'{{name}}': params.{{name}},
+          {{#headerParameters}}'{{name}}': params.{{#camelCase}}{{name}}{{/camelCase}},
           {{/headerParameters}}
           if (authToken != null) 'Authorization': 'Bearer $authToken',
         },
