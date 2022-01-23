@@ -24,8 +24,13 @@ Future<RequestType> toRequestType<RequestType>(
   }
   try {
     return fromJson(jsonObject);
-  } catch (_) {
-    throw BadRequestException(400, 'Error parsing json object');
+  } catch (e, st) {
+    throw BadRequestException(
+      400,
+      'Error parsing json object',
+      innerError: e,
+      innerStack: st,
+    );
   }
 }
 
@@ -40,8 +45,13 @@ Future<ParamsType> toParamsType<ParamsType>(
   };
   try {
     return fromParams(combinedParams);
-  } catch (_) {
-    throw BadRequestException(400, 'Error parsing parameters');
+  } catch (e, st) {
+    throw BadRequestException(
+      400,
+      'Error parsing parameters',
+      innerError: e,
+      innerStack: st,
+    );
   }
 }
 
