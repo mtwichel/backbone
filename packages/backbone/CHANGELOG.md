@@ -1,3 +1,7 @@
+## 0.0.1-dev.14
+
+- Better stacktrace when parsing errors
+
 ## 0.0.1-dev.13
 
 - Catching json parsing errors

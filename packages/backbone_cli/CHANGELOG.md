@@ -1,3 +1,7 @@
+## 0.0.1-dev.9
+
+- Update backbone dependency
+
 ## 0.0.1-dev.8
 
 - Fix bug where frontend params were generating incorrectly.
