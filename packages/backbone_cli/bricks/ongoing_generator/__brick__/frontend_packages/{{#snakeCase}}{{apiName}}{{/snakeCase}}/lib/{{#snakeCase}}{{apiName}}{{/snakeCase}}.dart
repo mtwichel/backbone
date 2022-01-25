@@ -36,7 +36,7 @@ class {{#pascalCase}}{{apiName}}{{/pascalCase}} {
       ),
     );
 
-    return {{#pascalCase}}{{responseType}}{{/pascalCase}}.fromJson(response.data);
+    {{#isInFunctionsObjects}}return {{#pascalCase}}{{responseType}}{{/pascalCase}}.fromJson(response.data);{{/isInFunctionsObjects}}{{^isInFunctionsObjects}}return response;{{/isInFunctionsObjects}}
   }
   {{/endpoints}}
 }

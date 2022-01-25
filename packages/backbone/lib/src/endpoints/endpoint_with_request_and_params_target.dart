@@ -44,6 +44,9 @@ class EndpointWithRequestAndParamsTarget<RequestType, ResponseType, ParamsType>
     }
 
     final response = await _function(argument, params, requestContext);
+    if (response is Response) {
+      return response;
+    }
     final responseJson = jsonEncode(response);
 
     return Response.ok(

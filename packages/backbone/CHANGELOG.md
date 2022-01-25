@@ -1,3 +1,7 @@
+## 0.0.1-dev.15
+
+- Allow endpoints to return generic Repsonse object.
+
 ## 0.0.1-dev.14
 
 - Better stacktrace when parsing errors

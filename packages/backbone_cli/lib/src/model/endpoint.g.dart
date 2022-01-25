@@ -22,5 +22,6 @@ Map<String, dynamic> _$EndpointToJson(Endpoint instance) => <String, dynamic>{
       'headerParameters':
           instance.headerParameters.map((e) => e.toJson()).toList(),
       'pathParameters': instance.pathParameters.map((e) => e.toJson()).toList(),
+      'isInFunctionsObjects': instance.isInFunctionsObjects,
       'pathWithParams': instance.pathWithParams,
     };
