@@ -1,3 +1,7 @@
+## 0.0.1-dev.11
+
+- Bump mason dependency
+
 ## 0.0.1-dev.10
 
 - Make `number` json type generate `num` instead of `double`

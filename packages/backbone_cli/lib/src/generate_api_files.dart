@@ -18,9 +18,8 @@ Future<void> generateApiFiles(
     await initialGenerator.generate(
       DirectoryGeneratorTarget(
         Directory(rootPath),
-        Logger(),
-        FileConflictResolution.overwrite,
       ),
+      fileConflictResolution: FileConflictResolution.overwrite,
       vars: convertedApi,
     );
   }
@@ -30,9 +29,8 @@ Future<void> generateApiFiles(
   await ongoingGenerator.generate(
     DirectoryGeneratorTarget(
       Directory(rootPath),
-      Logger(),
-      FileConflictResolution.overwrite,
     ),
+    fileConflictResolution: FileConflictResolution.overwrite,
     vars: convertedApi,
   );
 
