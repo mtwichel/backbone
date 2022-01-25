@@ -1,6 +1,6 @@
 name: backbone_cli
 description: A CLI for generating Dart Backends with Backbone.
-version: 0.0.1-dev.10
+version: 0.0.1-dev.11
 repository: https://github.com/mtwichel/backbone
 
 environment:
@@ -10,7 +10,7 @@ dependencies:
   args: ^2.3.0
   equatable: ^2.0.3
   json_annotation: ^4.4.0
-  mason: ^0.0.1-dev.57
+  mason: ^0.1.0-dev.4
   open_api_forked: ^3.0.0+5
   process_run: ^0.12.2+2
   recase: ^4.0.0
