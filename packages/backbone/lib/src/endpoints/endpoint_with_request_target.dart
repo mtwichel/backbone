@@ -37,6 +37,9 @@ class EndpointWithRequestTarget<RequestType, ResponseType> implements Endpoint {
     }
 
     final response = await _function(argument, requestContext);
+    if (response is Response) {
+      return response;
+    }
     final responseJson = jsonEncode(response);
 
     return Response.ok(

@@ -88,21 +88,21 @@ class Api {
           if (successfulResponse == null) {
             throw Exception('No 200 response found for ${operationEntry.key}');
           }
-          final responseName = successfulResponse.referenceURI?.pathSegments[2];
+          var responseName = successfulResponse.referenceURI?.pathSegments[2];
 
           final responseSchema =
               successfulResponse.content?['application/json']?.schema;
           if (responseSchema == null) {
-            throw Exception(
-              'Response schema missing ${operationEntry.key}: ${pathEntry.key}',
+            responseName = 'Response';
+          }
+          if (responseSchema != null) {
+            objects.add(
+              SchemaObject.fromOpenApi(
+                object: responseSchema,
+                name: responseName ?? '${operationId}Response',
+              ),
             );
           }
-          objects.add(
-            SchemaObject.fromOpenApi(
-              object: responseSchema,
-              name: responseName ?? '${operationId}Response',
-            ),
-          );
 
           String? requestName;
           final requestSchema =

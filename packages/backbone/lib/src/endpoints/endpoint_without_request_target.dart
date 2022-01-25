@@ -33,6 +33,9 @@ class EndpointWithoutRequestTarget<ResponseType> implements Endpoint {
     }
 
     final response = await _function(requestContext);
+    if (response is Response) {
+      return response;
+    }
     final responseJson = jsonEncode(response);
 
     return Response.ok(

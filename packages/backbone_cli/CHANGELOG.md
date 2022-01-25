@@ -1,3 +1,7 @@
+## 0.0.1-dev.12
+
+- Generate generic responses if response is not `application/json`
+
 ## 0.0.1-dev.11
 
 - Bump mason dependency
