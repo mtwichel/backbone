@@ -102,7 +102,7 @@ String getTypeNameFromSchemaObject(
     case APIType.string:
       return 'String';
     case APIType.number:
-      return 'double';
+      return 'num';
     case APIType.integer:
       return 'int';
     case APIType.boolean:
