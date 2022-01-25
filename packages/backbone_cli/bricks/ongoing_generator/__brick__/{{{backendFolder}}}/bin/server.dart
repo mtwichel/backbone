@@ -14,7 +14,7 @@ void main() async {
   {{#hasRequest}}
 
   {{#hasParams}}
-  router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithRequestAndParamsTarget<function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{responseType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
+  router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithRequestAndParamsTarget<function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}, {{#isInFunctionsObjects}}function_objects.{{/isInFunctionsObjects}}{{#pascalCase}}{{responseType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
     requestFromJson: (json) => function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}.fromJson(json),
     fromParams: (params) => function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}.fromJson(params),
     tokenVerifier: api.verifyToken,
@@ -23,7 +23,7 @@ void main() async {
   {{/hasParams}}
 
   {{^hasParams}}
-  router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithRequestTarget<function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{responseType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
+  router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithRequestTarget<function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}, {{#isInFunctionsObjects}}function_objects.{{/isInFunctionsObjects}}{{#pascalCase}}{{responseType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
     requestFromJson: (json) => function_objects.{{#pascalCase}}{{requestType}}{{/pascalCase}}.fromJson(json),
     tokenVerifier: api.verifyToken,
     requiresAuthentication: {{requiresAuthentication}},
@@ -35,7 +35,7 @@ void main() async {
   {{^hasRequest}}
 
   {{#hasParams}}
-  router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithoutRequestAndParamsTarget<function_objects.{{#pascalCase}}{{responseType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
+  router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithoutRequestAndParamsTarget<{{#isInFunctionsObjects}}function_objects.{{/isInFunctionsObjects}}{{#pascalCase}}{{responseType}}{{/pascalCase}}, function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
     fromParams: (params) => function_objects.{{#pascalCase}}{{paramsType}}{{/pascalCase}}.fromJson(params),
     tokenVerifier: api.verifyToken,
     requiresAuthentication: {{requiresAuthentication}},
@@ -43,7 +43,7 @@ void main() async {
   {{/hasParams}}
 
   {{^hasParams}}
-  router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithoutRequestTarget<function_objects.{{#pascalCase}}{{responseType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
+  router.add('{{#upperCase}}{{method}}{{/upperCase}}', '{{{path}}}', EndpointWithoutRequestTarget<{{#isInFunctionsObjects}}function_objects.{{/isInFunctionsObjects}}{{#pascalCase}}{{responseType}}{{/pascalCase}}>(api.{{#camelCase}}{{name}}{{/camelCase}},
     tokenVerifier: api.verifyToken,
     requiresAuthentication: {{requiresAuthentication}},
   ).handler,);

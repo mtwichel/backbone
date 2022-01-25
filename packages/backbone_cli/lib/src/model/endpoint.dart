@@ -36,6 +36,7 @@ class Endpoint {
       parameters.where((p) => p.isHeader).toList();
   List<Parameter> get pathParameters =>
       parameters.where((p) => p.isPath).toList();
+  bool get isInFunctionsObjects => responseType != 'Response';
 
   String get pathWithParams =>
       path.replaceAll('<', r'${params.').replaceAll('>', '}');
