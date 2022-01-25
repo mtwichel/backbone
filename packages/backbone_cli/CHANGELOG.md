@@ -1,3 +1,7 @@
+## 0.0.1-dev.10
+
+- Make `number` json type generate `num` instead of `double`
+
 ## 0.0.1-dev.9
 
 - Update backbone dependency
