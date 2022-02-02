@@ -1,4 +1,4 @@
-name: {{#snakeCase}}{{apiName}}{{/snakeCase}}
+name: {{#snakeCase}}{{apiName}}{{/snakeCase}}_backend
 version: 0.0.1
 publish_to: none
 
